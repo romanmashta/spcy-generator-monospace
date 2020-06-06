@@ -1,10 +1,15 @@
 'use strict';
+require('dotenv').config()
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const path = require('path');
+const { Octokit } = require("@octokit/rest");
+const octokit = new Octokit({
+  auth: process.env.GIT_TOKEN
+});
 
-const SPACE_ROOT = 'spc';
+const SPACE_ROOT = 'spcy';
 const SCOPE_NAME = 'spcy';
 const GIT_USER = 'romanmashta';
 
@@ -56,9 +61,10 @@ module.exports = class extends Generator {
     );
   }
 
-  _initGit() {
-    const repoName = `${this.props.scopeName}-${this.props.packageName}`;
-    const gitRepoName = `${this.props.gitUser}/${repoName}`;
+  async _initGit() {
+    const project = `${this.props.scopeName}-${this.props.packageName}`;
+    const owner = this.props.gitUser;
+    const gitRepoName = `${owner}/${project}`;
     const scopedPackageName = `@${this.props.scopeName}/${this.props.packageName}`;
     const repo = `git@github.com:${gitRepoName}.git`;
     const root = this.packageRoot();
@@ -69,16 +75,19 @@ module.exports = class extends Generator {
     this.log('Package Root:', root);
 
     const rootScope = {cwd: this._rootDir}
-    console.log('scope', rootScope);
+    console.log('Creating git repository', repo);
+    await octokit.repos.createForAuthenticatedUser({name: project});
+    console.log('Done');
 
     this.spawnCommandSync('git', ['init']);
     this.spawnCommandSync('git', ['remote', 'add', 'origin', repo]);
     this.spawnCommandSync('git', ['add', '--all']);
-    this.spawnCommandSync('git', ['commit', '-m', `"Initial commit for ${repoName}"`]);
+    this.spawnCommandSync('git', ['commit', '-m', `Init repository for ${project}`]);
     this.spawnCommandSync('git', ['submodule', 'add', repo, root], rootScope);
+    this.spawnCommandSync('git', ['push', 'origin', 'master']);
   }
 
-  install() {
-    this._initGit();
+  async install() {
+    await this._initGit();
   }
 };
