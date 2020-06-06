@@ -1,8 +1,9 @@
 {
   "name": "@spcy/generator.monospace",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "homepage": "",
+  "private": false,
   "author": {
     "name": "Roman Mashta",
     "email": "roman.mashta@gmail.com",
@@ -77,5 +78,6 @@
     "test": "jest"
   },
   "repository": "romanmashta/spcy.generator.monospace",
-  "license": "MIT"
+  "license": "MIT",
+  "gitHead": "752b721d9da97dd30c02c8c2c868d4f24f792afe"
 }
