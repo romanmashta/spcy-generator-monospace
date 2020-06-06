@@ -21,14 +21,14 @@ module.exports = class extends Generator {
         name: "packageName",
         message: "Specify package name",
       }
-      ,{
+      , {
         type: "input",
         name: "scopeName",
         message: "Specify package scope name",
         default: SCOPE_NAME,
         store: true,
       }
-      ,{
+      , {
         type: "input",
         name: "gitUser",
         message: "What's your GitHub username",
@@ -42,9 +42,11 @@ module.exports = class extends Generator {
     });
   }
 
+  packageRoot = () => path.join(...[SPACE_ROOT, ...this.props.packageName.split('-')]);
+
   app() {
-    const elements = this.props.packageName.split('-');
-    this.destinationRoot(path.join(...[SPACE_ROOT, ...elements]));
+    this._rootDir = this.destinationRoot();
+    this.destinationRoot(this.packageRoot());
   }
 
   writing() {
@@ -54,19 +56,29 @@ module.exports = class extends Generator {
     );
   }
 
-  install() {
+  _initGit() {
     const repoName = `${this.props.scopeName}-${this.props.packageName}`;
     const gitRepoName = `${this.props.gitUser}/${repoName}`;
     const scopedPackageName = `@${this.props.scopeName}/${this.props.packageName}`;
     const repo = `git@github.com:${gitRepoName}.git`;
+    const root = this.packageRoot();
 
     this.log('Destination root:', this.destinationRoot());
-    this.log('Git Repository Name:', gitRepoName);
+    this.log('Git Repository:', repo);
     this.log('Package Name:', scopedPackageName);
+    this.log('Package Root:', root);
+
+    const rootScope = {cwd: this._rootDir}
+    console.log('scope', rootScope);
 
     this.spawnCommandSync('git', ['init']);
     this.spawnCommandSync('git', ['remote', 'add', 'origin', repo]);
     this.spawnCommandSync('git', ['add', '--all']);
     this.spawnCommandSync('git', ['commit', '-m', `"Initial commit for ${repoName}"`]);
+    this.spawnCommandSync('git', ['submodule', 'add', repo, root], rootScope);
+  }
+
+  install() {
+    this._initGit();
   }
 };
