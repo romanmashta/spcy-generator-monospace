@@ -47,7 +47,7 @@ module.exports = class extends Generator {
     });
   }
 
-  packageRoot = () => path.join(...[SPACE_ROOT, ...this.props.packageName.split('-')]);
+  packageRoot = () => path.join(...[SPACE_ROOT, ...this.props.packageName.split('.')]);
 
   app() {
     this._rootDir = this.destinationRoot();
@@ -62,7 +62,7 @@ module.exports = class extends Generator {
   }
 
   async _initGit() {
-    const project = `${this.props.scopeName}-${this.props.packageName}`;
+    const project = `${this.props.scopeName}.${this.props.packageName}`;
     const owner = this.props.gitUser;
     const gitRepoName = `${owner}/${project}`;
     const scopedPackageName = `@${this.props.scopeName}/${this.props.packageName}`;
