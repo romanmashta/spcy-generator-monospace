@@ -6,7 +6,7 @@ const path = require('path');
 const initRepoQuestions = require('../initRepo/questions');
 const {fromQuestions, repoProps} = require('../../utils');
 
-const COMP_ROOT = 'component';
+const COMP_ROOT = 'comp';
 
 module.exports = class extends Generator {
   preRun(){
