@@ -1,1 +1,1 @@
-/// <reference types="@spcy/vendor.react-scripts" />
+/// <reference types="@spcy/pub.react-scripts" />

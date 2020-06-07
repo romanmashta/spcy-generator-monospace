@@ -5,7 +5,7 @@
   "main": "src/index.tsx",
   "main:src": "src/index.tsx",
   "dependencies": {
-    "@spcy/vendor.react-scripts": "3.4.1-spcy-02",
+    "@spcy/pub.react-scripts": "^3.4.1-spcy-02",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
