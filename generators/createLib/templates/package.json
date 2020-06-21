@@ -17,7 +17,7 @@
     "spcy:meta": "yarn tsr --includes='__tests__/**/*.ts' && yarn spcy:format",
     "spcy:build": "yarn spcy:clean && tsc",
     "spcy:format": "prettier --write \"{src,__tests__}/**/*.{js,ts}\"",
-    "spcy:lint": "eslint \"src/**/*.{js,ts}\"",
+    "spcy:lint": "eslint --fix \"src/**/*.{js,ts}\"",
     "spcy:test": "jest"
   },
   "devDependencies": {
@@ -25,9 +25,10 @@
     "@types/jest": "^26.0.0",
     "@types/lodash": "^4.14.155",
     "@types/node": "^14.0.13",
+    "typescript": "3.9.5",
     "eslint": "^6.8.0",
-    "prettier": "^1.18.2",
-    "eslint-config-airbnb-typescript-prettier": "^2.1.1",
+    "prettier": "^2.0.5",
+    "eslint-config-airbnb-typescript-prettier": "^2.2.0",
     "jest": "^26.0.1",
     "ts-jest": "^26.1.0",
     "shx": "^0.3.2"
