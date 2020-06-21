@@ -32,5 +32,8 @@
     "jest": "^26.0.1",
     "ts-jest": "^26.1.0",
     "shx": "^0.3.2"
+  },
+  "dependencies": {
+    "@spcy/lib.core.reflection": "^1.0.0"
   }
 }
