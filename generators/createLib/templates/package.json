@@ -14,12 +14,14 @@
   "private": true,
   "scripts": {
     "spcy:clean": "shx rm -rf dist && shx rm -rf lib",
+    "spcy:meta": "yarn tsr --includes='__tests__/**/*.ts' && yarn spcy:format",
     "spcy:build": "yarn spcy:clean && tsc",
     "spcy:format": "prettier --write \"{src,__tests__}/**/*.{js,ts}\"",
     "spcy:lint": "eslint \"src/**/*.{js,ts}\"",
     "spcy:test": "jest"
   },
   "devDependencies": {
+    "@spcy/lib.core.typescript-reflection": "^1.0.0",
     "@types/jest": "^26.0.0",
     "@types/lodash": "^4.14.155",
     "@types/node": "^14.0.13",
