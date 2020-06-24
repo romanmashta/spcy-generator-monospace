@@ -21,7 +21,7 @@
     "spcy:test": "jest"
   },
   "devDependencies": {
-    "@spcy/lib.core.typescript-reflection": "^1.0.0",
+    "@spcy/lib.dev.typescript-reflection": "^1.0.0",
     "@types/jest-specific-snapshot": "^0.5.4",
     "@types/jest": "^26.0.0",
     "@types/lodash": "^4.14.155",
