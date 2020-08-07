@@ -22,6 +22,7 @@
     "spcy:test": "jest"
   },
   "devDependencies": {
+    "@spcy/lib.dev.plops": "^1.0.0",
     "@spcy/lib.dev.tasty": "^1.0.0",
     "@spcy/lib.dev.typescript-reflection": "^1.0.0",
     "@types/jest-specific-snapshot": "^0.5.4",
